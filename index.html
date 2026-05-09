@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartDataFusion Enterprise Platform</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+    <!-- Deferred Tawk.to script (loads after page idle) -->
+    <script>
+      (function(){
+        function loadTawk(){
+          var s1=document.createElement('script');
+          s1.async=true;
+          s1.src='https://embed.tawk.to/69fd82b2427c251c368c1eb5/1jo34d3cc';
+          s1.charset='UTF-8';
+          s1.setAttribute('crossorigin','*');
+          var s0=document.getElementsByTagName('script')[0];
+          if (s0 && s0.parentNode) s0.parentNode.insertBefore(s1,s0);
+        }
+        if ('requestIdleCallback' in window) {
+          (window as any).requestIdleCallback(loadTawk, {timeout: 3000});
+        } else {
+          window.addEventListener('load', function() { setTimeout(loadTawk, 1500); });
+        }
+      })();
+    </script>
+  </body>
+</html>

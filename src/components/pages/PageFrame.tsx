@@ -1,0 +1,68 @@
+import React from 'react';
+import { ArrowLeft } from 'lucide-react';
+import logoFooter from '../../assets/logoFooter.png';
+
+interface PageFrameProps {
+  eyebrow: string;
+  title: string;
+  description: string;
+  onLaunchDashboard: () => void;
+  children: React.ReactNode;
+}
+
+export function PageFrame({
+  eyebrow,
+  title,
+  description,
+  onLaunchDashboard,
+  children
+}: PageFrameProps) {
+  return (
+    <div className="min-h-screen bg-sdf-bg text-sdf-text">
+      <header className="sticky top-0 z-30 border-b border-sdf-border bg-sdf-surface/95 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between gap-6">
+          <a href="/" className="flex items-center gap-3 group">
+            <img src={logoFooter} alt="SmartDataFusion" className="h-10 w-auto" />
+            <span className="font-heading font-bold text-lg tracking-wide hidden sm:block group-hover:text-sdf-cyan transition-colors">
+              SmartData<span className="text-sdf-cyan">Fusion</span>
+            </span>
+          </a>
+
+          <div className="flex items-center gap-3">
+            <a
+              href="/"
+              className="inline-flex items-center gap-2 text-sm font-ui text-sdf-muted hover:text-sdf-text transition-colors">
+              <ArrowLeft className="w-4 h-4" />
+              <span className="hidden sm:inline">Home</span>
+            </a>
+
+            <button
+              onClick={onLaunchDashboard}
+              className="font-ui text-sm font-semibold px-4 py-2 border border-sdf-cyan text-sdf-cyan rounded hover:bg-sdf-cyan/10 hover:shadow-[0_0_15px_rgba(0,200,255,0.3)] transition-all duration-300">
+              Launch Dashboard
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section className="relative overflow-hidden border-b border-sdf-border bg-sdf-surface/20">
+          <div className="absolute inset-0 bg-dot-pattern opacity-20"></div>
+          <div className="relative max-w-5xl mx-auto px-6 py-20 md:py-24">
+            <span className="font-mono text-xs text-sdf-muted uppercase tracking-widest mb-4 block">
+              {eyebrow}
+            </span>
+            <h1 className="font-heading text-4xl md:text-5xl font-bold text-sdf-text max-w-3xl leading-tight">
+              {title}
+            </h1>
+            <p className="mt-5 max-w-3xl font-mono text-sm md:text-base text-sdf-muted leading-relaxed">
+              {description}
+            </p>
+          </div>
+        </section>
+
+        {children}
+      </main>
+    </div>
+  );
+}
