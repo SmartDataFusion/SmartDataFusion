@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, Phone, MapPin } from 'lucide-react';
+import { Send, User, Calendar, MapPin, Phone } from 'lucide-react';
 
 export function Contact() {
   const [formState, setFormState] = useState({
@@ -86,7 +86,7 @@ export function Contact() {
             // CONTACT US
           </span>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-sdf-text">
-            Talk to the SmartDataFusion team.
+           Ready to Unify Your Data? Let's Talk.
           </h2>
           <p className="font-mono text-sm text-sdf-muted mt-4 max-w-2xl mx-auto">
             Share your deployment goals and data challenges. We will respond with a tailored
@@ -268,21 +268,21 @@ export function Contact() {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-lg bg-sdf-surface border border-sdf-border flex items-center justify-center">
-                  <Mail className="w-4 h-4 text-sdf-cyan" />
+                  <User className="w-4 h-4 text-sdf-cyan" />
                 </div>
                 <div>
-                  <div className="font-mono text-xs text-sdf-muted">Email</div>
-                  <div className="font-ui text-sm text-sdf-text">hello@smartdatafusion.ai</div>
+                  <div className="font-mono text-xs text-sdf-muted">Founder Name</div>
+                  <div className="font-ui text-sm text-sdf-text">Ayesha Wickramasinghe</div>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-lg bg-sdf-surface border border-sdf-border flex items-center justify-center">
-                  <Phone className="w-4 h-4 text-sdf-green" />
+                  <Calendar className="w-4 h-4 text-sdf-green" />
                 </div>
                 <div>
-                  <div className="font-mono text-xs text-sdf-muted">Phone</div>
-                  <div className="font-ui text-sm text-sdf-text">+1 (415) 771-9023</div>
+                  <div className="font-mono text-xs text-sdf-muted">Founded Date</div>
+                  <div className="font-ui text-sm text-sdf-text">July 29, 2023</div>
                 </div>
               </div>
 
@@ -291,36 +291,21 @@ export function Contact() {
                   <MapPin className="w-4 h-4 text-sdf-violet" />
                 </div>
                 <div>
-                  <div className="font-mono text-xs text-sdf-muted">HQ</div>
+                  <div className="font-mono text-xs text-sdf-muted">Address</div>
                   <div className="font-ui text-sm text-sdf-text">
                     1 Sansome Street, San Francisco, CA 94104, USA
                   </div>
                 </div>
               </div>
 
-              <div className="pt-2 border-t border-sdf-border/60">
-                <div className="font-mono text-xs text-sdf-muted">Company</div>
-                <div className="font-ui text-sm text-sdf-text">
-                  SmartDataFusion Analytics Inc.
+              <div className="flex items-center gap-3 pt-2 border-t border-sdf-border/60">
+                <div className="w-9 h-9 rounded-lg bg-sdf-surface border border-sdf-border flex items-center justify-center">
+                  <Phone className="w-4 h-4 text-sdf-green" />
                 </div>
-              </div>
-
-              <div>
-                <div className="font-mono text-xs text-sdf-muted">Founder &amp; CEO</div>
-                <div className="font-ui text-sm text-sdf-text">
-                  Ayesha Wickramasinghe
+                <div>
+                  <div className="font-mono text-xs text-sdf-muted">Phone Number</div>
+                  <div className="font-ui text-sm text-sdf-text">+1 (415) 771-9023</div>
                 </div>
-              </div>
-
-              <div>
-                <div className="font-mono text-xs text-sdf-muted">Website</div>
-                <a
-                  href="https://smartdatafusion.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-ui text-sm text-sdf-cyan hover:text-sdf-cyan/80 transition-colors">
-                  smartdatafusion.com
-                </a>
               </div>
             </div>
 

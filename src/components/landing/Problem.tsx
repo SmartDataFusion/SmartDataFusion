@@ -42,7 +42,7 @@ export function Problem() {
             // THE PROBLEM
           </span>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-sdf-text max-w-2xl">
-            Modern Organizations Run on Fragmented Data.
+            Why Your Data Isn't Working for You.
           </h2>
         </div>
 

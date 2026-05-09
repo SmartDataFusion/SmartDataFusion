@@ -43,7 +43,7 @@ export function Faq() {
             // FAQ
           </span>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-sdf-text">
-            Common Questions, Clear Answers.
+            Got Questions? We've Got the Intelligence.
           </h2>
         </div>
 

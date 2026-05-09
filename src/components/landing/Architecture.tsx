@@ -13,7 +13,7 @@ export function Architecture() {
             // ARCHITECTURE
           </span>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-sdf-text">
-            How SmartDataFusion Works - Powered by NVIDIA SDK Architecture.
+            The Fusion Process
           </h2>
         </div>
 

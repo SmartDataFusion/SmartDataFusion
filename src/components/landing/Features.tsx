@@ -61,7 +61,7 @@ export function Features() {
             // PLATFORM CAPABILITIES
           </span>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-sdf-text">
-            Built for Enterprise-Grade Intelligence.
+            Every Capability Your Data Intelligence Stack Needs.
           </h2>
         </div>
 

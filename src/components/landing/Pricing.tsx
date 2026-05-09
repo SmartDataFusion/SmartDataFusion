@@ -4,7 +4,7 @@ import { Check } from 'lucide-react';
 export function Pricing() {
   const plans = [
   {
-    name: 'Starter',
+    name: 'Fusion Core',
     target: 'CORE',
     desc: 'SMBs & Startups',
     color: 'border-sdf-cyan',
@@ -16,7 +16,7 @@ export function Pricing() {
 
   },
   {
-    name: 'Growth',
+    name: 'Fusion Pro',
     target: 'ENTERPRISE',
     desc: 'Large Organizations',
     color: 'border-sdf-violet',
@@ -30,7 +30,7 @@ export function Pricing() {
 
   },
   {
-    name: 'Scale',
+    name: 'Fusion Elite',
     target: 'PLATFORM',
     desc: 'IoT & Infrastructure Providers',
     color: 'border-[#F5A623]',
@@ -54,7 +54,7 @@ export function Pricing() {
             // PRICING
           </span>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-sdf-text">
-            Scalable Plans for Every Intelligence Need.
+            Pricing Plan for Every Data Challenge.
           </h2>
           <p className="font-mono text-sm text-sdf-muted mt-4 max-w-2xl mx-auto">
             Subscription-based SaaS pricing with tiers aligned to data volume,

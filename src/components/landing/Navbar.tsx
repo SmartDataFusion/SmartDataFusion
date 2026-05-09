@@ -29,12 +29,12 @@ export function Navbar({ onLaunchDashboard }: NavbarProps) {
     href: '#iot'
   },
   {
-    name: 'Enterprise',
-    href: '#enterprise'
-  },
-  {
     name: 'Pricing',
     href: '#pricing'
+  },
+  {
+    name: 'Contact Us',
+    href: '#contact'
   }];
 
   return (

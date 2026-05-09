@@ -39,18 +39,15 @@ export function Hero({ onLaunchDashboard }: HeroProps) {
             </div>
 
             <h1 className="font-heading text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-sdf-text">
-              The Advanced{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sdf-cyan to-sdf-violet">
-                AI Data Fusion
-              </span>{' '}
-              Platform for Enterprise & IoT.
+              <span className="block">Enterprise & IoT Data,</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-sdf-cyan to-sdf-violet">
+                Fused Into One
+              </span>
+              <span className="block">Intelligence Layer.</span>
             </h1>
 
             <p className="font-mono text-sdf-muted text-sm lg:text-base leading-relaxed max-w-xl">
-              Unify fragmented enterprise systems and IoT data streams into a
-              single AI-powered intelligence layer — delivering real-time
-              insights, predictive analytics, and operational visibility at
-              scale.
+              Fuse enterprise systems and IoT data into a single, decision-grade intelligence engine.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-4">
@@ -63,7 +60,7 @@ export function Hero({ onLaunchDashboard }: HeroProps) {
               </button>
               <button className="flex items-center gap-2 border border-sdf-border bg-sdf-surface/50 hover:bg-sdf-surface text-sdf-text font-mono text-sm px-6 py-3 rounded transition-all duration-300">
                 <Terminal className="w-4 h-4 text-sdf-muted" />
-                View Architecture Docs
+                Request a Demo
               </button>
             </div>
           </motion.div>
