@@ -24,8 +24,13 @@ const PrivacyPolicyPage = lazy(() =>
     default: module.PrivacyPolicyPage
   }))
 );
+const ProductPage = lazy(() =>
+  import('./components/pages/ProductPage').then((module) => ({
+    default: module.ProductPage
+  }))
+);
 
-type AppRoute = '/' | '/about' | '/contact' | '/privacy-policy' | '/dashboard';
+type AppRoute = '/' | '/about' | '/contact' | '/privacy-policy' | '/dashboard' | '/product';
 
 function getRouteFromPathname(pathname: string): AppRoute {
   if (pathname === '/about') {
@@ -38,6 +43,10 @@ function getRouteFromPathname(pathname: string): AppRoute {
 
   if (pathname === '/privacy-policy') {
     return '/privacy-policy';
+  }
+
+  if (pathname === '/product') {
+    return '/product';
   }
 
   if (pathname === '/dashboard') {
@@ -102,6 +111,10 @@ export function App() {
     setCurrentView('landing');
   };
 
+  const handleGoToProduct = () => {
+    navigateTo('/product');
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-sdf-bg text-sdf-text flex items-center justify-center">
@@ -140,8 +153,14 @@ export function App() {
         </Suspense>
       )}
 
+      {pathname === '/product' && currentView === 'landing' && (
+        <Suspense fallback={routeFallback}>
+          <ProductPage onLaunchDashboard={handleLaunchDashboard} />
+        </Suspense>
+      )}
+
       {pathname === '/' && currentView === 'landing' && (
-        <LandingPage onLaunchDashboard={handleLaunchDashboard} />
+        <LandingPage onPrimaryAction={handleGoToProduct} />
       )}
 
       {currentView === 'auth' && (

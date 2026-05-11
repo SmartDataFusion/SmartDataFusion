@@ -6,9 +6,9 @@ import heroIcon2 from '../../assets/mainPage/hero icons (2).svg';
 import heroIcon3 from '../../assets/mainPage/hero icons (3).svg';
 import heroIcon4 from '../../assets/mainPage/hero icons (4).svg';
 interface HeroProps {
-  onLaunchDashboard: () => void;
+  onPrimaryAction: () => void;
 }
-export function Hero({ onLaunchDashboard }: HeroProps) {
+export function Hero({ onPrimaryAction }: HeroProps) {
   return (
     <section className="relative pt-20 pb-20 lg:pt-32 lg:pb-32 overflow-hidden min-h-screen flex flex-col justify-center">
       {/* Background Particles */}
@@ -52,10 +52,10 @@ export function Hero({ onLaunchDashboard }: HeroProps) {
 
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <button
-                onClick={onLaunchDashboard}
+                onClick={onPrimaryAction}
                 className="group flex items-center gap-2 bg-sdf-cyan text-sdf-bg font-ui font-bold px-6 py-3 rounded hover:bg-sdf-cyan/90 hover:shadow-[0_0_20px_rgba(0,200,255,0.4)] transition-all duration-300">
                 
-                Explore the Platform
+                Get Started
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
               <button className="flex items-center gap-2 border border-sdf-border bg-sdf-surface/50 hover:bg-sdf-surface text-sdf-text font-mono text-sm px-6 py-3 rounded transition-all duration-300">

@@ -12,16 +12,16 @@ import { Faq } from './landing/Faq';
 import { Contact } from './landing/Contact';
 import { Footer } from './landing/Footer';
 interface LandingPageProps {
-  onLaunchDashboard: () => void;
+  onPrimaryAction: () => void;
 }
-export function LandingPage({ onLaunchDashboard }: LandingPageProps) {
+export function LandingPage({ onPrimaryAction }: LandingPageProps) {
   return (
     <div className="relative w-full">
       <div className="fixed inset-0 z-0 pointer-events-none bg-grid-pattern opacity-20"></div>
       <div className="relative z-10">
-        <Navbar onLaunchDashboard={onLaunchDashboard} />
+        <Navbar onPrimaryAction={onPrimaryAction} />
         <main>
-          <Hero onLaunchDashboard={onLaunchDashboard} />
+          <Hero onPrimaryAction={onPrimaryAction} />
           <Problem />
           <Solution />
           <Architecture />

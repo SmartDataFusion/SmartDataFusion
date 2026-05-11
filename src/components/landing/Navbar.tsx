@@ -3,9 +3,9 @@ import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../../assets/logo.png';
 interface NavbarProps {
-  onLaunchDashboard: () => void;
+  onPrimaryAction: () => void;
 }
-export function Navbar({ onLaunchDashboard }: NavbarProps) {
+export function Navbar({ onPrimaryAction }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   useEffect(() => {
@@ -73,10 +73,10 @@ export function Navbar({ onLaunchDashboard }: NavbarProps) {
             </span>
           </div>
           <button
-            onClick={onLaunchDashboard}
+            onClick={onPrimaryAction}
             className="font-ui text-sm font-semibold px-5 py-2 border border-sdf-cyan text-sdf-cyan rounded hover:bg-sdf-cyan/10 hover:shadow-[0_0_15px_rgba(0,200,255,0.3)] transition-all duration-300">
             
-            Launch Dashboard
+            Get Started
           </button>
         </div>
 
@@ -131,11 +131,11 @@ export function Navbar({ onLaunchDashboard }: NavbarProps) {
               <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                onLaunchDashboard();
+                onPrimaryAction();
               }}
               className="w-full font-ui font-semibold px-5 py-3 border border-sdf-cyan text-sdf-cyan rounded hover:bg-sdf-cyan/10 transition-all">
               
-                Launch Dashboard
+                Get Started
               </button>
             </div>
           </motion.div>
