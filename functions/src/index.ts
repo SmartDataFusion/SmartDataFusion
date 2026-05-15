@@ -1,15 +1,30 @@
 import type { Response } from 'express';
 import { onRequest } from 'firebase-functions/v2/https';
 
-const setCorsHeaders = (res: Response, origin?: string) => {
-  const allowedOrigins = (process.env.RECAPTCHA_ALLOWED_ORIGINS ?? '')
+const parseAllowedOrigins = (value?: string) =>
+  (value ?? '')
     .split(',')
     .map((entry) => entry.trim())
     .filter(Boolean);
+
+const isLocalhostOrigin = (origin?: string) =>
+  Boolean(
+    origin &&
+      (origin.startsWith('http://localhost:') ||
+        origin.startsWith('http://127.0.0.1:'))
+  );
+
+const setCorsHeaders = (
+  res: Response,
+  origin?: string,
+  allowedOrigins: string[] = parseAllowedOrigins(
+    process.env.RECAPTCHA_ALLOWED_ORIGINS
+  )
+) => {
   const allowAllOrigins = allowedOrigins.length === 0;
   if (allowAllOrigins) {
     res.set('Access-Control-Allow-Origin', origin ?? '*');
-  } else if (origin && allowedOrigins.includes(origin)) {
+  } else if (origin && (allowedOrigins.includes(origin) || isLocalhostOrigin(origin))) {
     res.set('Access-Control-Allow-Origin', origin);
   }
 

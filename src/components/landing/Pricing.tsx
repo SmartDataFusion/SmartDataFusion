@@ -2,11 +2,22 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 export function Pricing() {
+  const handleCheckout = (planName: string, planPrice: string) => {
+    const params = new URLSearchParams({
+      plan: planName,
+      price: planPrice
+    });
+    window.location.href = `/sandbox-payment?${params.toString()}`;
+  };
+
   const plans = [
   {
     name: 'Fusion Core',
     target: 'CORE',
     desc: 'SMBs & Startups',
+    price: '$150',
+    billing: 'per month',
+    priceId: 'price_1TWd9ZHmSFV3JWUTBWw67Hpo',
     color: 'border-sdf-cyan',
     features: [
     'Up to 10 Data Sources',
@@ -19,6 +30,9 @@ export function Pricing() {
     name: 'Fusion Pro',
     target: 'ENTERPRISE',
     desc: 'Large Organizations',
+    price: '$200',
+    billing: 'per month',
+    priceId: 'price_1TWdAdHmSFV3JWUTgtzUhkH6',
     color: 'border-sdf-violet',
     popular: true,
     features: [
@@ -33,6 +47,9 @@ export function Pricing() {
     name: 'Fusion Elite',
     target: 'PLATFORM',
     desc: 'IoT & Infrastructure Providers',
+    price: 'Custom',
+    billing: 'annual contract',
+    priceId: null,
     color: 'border-[#F5A623]',
     features: [
     'Multi-Region Deployment',
@@ -102,6 +119,14 @@ export function Pricing() {
                   {plan.name}
                 </h3>
                 <p className="font-ui text-sm text-sdf-muted">{plan.desc}</p>
+                <div className="mt-4 flex items-baseline gap-2">
+                  <span className="font-heading text-3xl text-sdf-text">
+                    {plan.price}
+                  </span>
+                  <span className="font-mono text-xs text-sdf-muted">
+                    {plan.billing}
+                  </span>
+                </div>
               </div>
 
               <ul className="space-y-4 mb-8 flex-grow">
@@ -116,9 +141,10 @@ export function Pricing() {
               </ul>
 
               <button
-              className={`w-full py-3 rounded font-ui font-bold transition-all ${plan.popular ? 'bg-sdf-violet text-white hover:bg-sdf-violet/90 hover:shadow-[0_0_15px_rgba(123,47,255,0.4)]' : 'bg-transparent border border-sdf-border text-sdf-text hover:border-sdf-cyan hover:text-sdf-cyan'}`}>
+              onClick={() => plan.priceId === null ? window.location.href = '#contact' : handleCheckout(plan.name, `${plan.price} ${plan.billing}`)}
+              className={`w-full py-3 rounded font-ui font-bold transition-all ${plan.popular ? 'bg-sdf-violet text-white hover:bg-sdf-violet/90 hover:shadow-[0_0_15px_rgba(123,47,255,0.4)]' : 'bg-sdf-cyan/10 border border-sdf-cyan text-sdf-cyan hover:bg-sdf-cyan/20 hover:shadow-[0_0_12px_rgba(0,200,255,0.2)]'}`}>
               
-                {plan.popular ? 'Get Started' : 'Contact Sales'}
+                {plan.priceId ? 'Checkout' : 'Contact Sales'}
               </button>
             </motion.div>
           )}

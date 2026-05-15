@@ -8,7 +8,9 @@ import {
   signInWithPopup,
   signOut
 } from 'firebase/auth';
+import { Eye, EyeOff } from 'lucide-react';
 import { auth } from '../../firebase';
+import logoFooter from '../../assets/logoFooter.png';
 
 interface AuthPanelProps {
   onBackToSite?: () => void;
@@ -28,6 +30,8 @@ export function AuthPanel({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState('');
   const [info, setInfo] = useState('');
   const [loading, setLoading] = useState(false);
@@ -42,7 +46,9 @@ export function AuthPanel({
     if (recaptchaSiteKey) {
       import('react-google-recaptcha').then((mod) => {
         if (mounted) setReCAPTCHAComponent(() => mod.default);
-      }).catch(() => {});
+      }).catch((error) => {
+        console.error('Failed to load reCAPTCHA component', error);
+      });
     }
     return () => { mounted = false; };
   }, [recaptchaSiteKey]);
@@ -51,6 +57,20 @@ export function AuthPanel({
     () => auth.currentUser?.email ?? email,
     [email]
   );
+  const passwordStrength = useMemo(() => {
+    if (!password) {
+      return { score: 0, label: 'Enter a password' };
+    }
+    let score = 0;
+    if (password.length >= 8) score += 1;
+    if (password.length >= 12) score += 1;
+    if (/[A-Z]/.test(password) && /[a-z]/.test(password)) score += 1;
+    if (/[0-9]/.test(password) || /[^A-Za-z0-9]/.test(password)) score += 1;
+
+    const labels = ['Weak', 'Fair', 'Good', 'Strong'];
+    const label = labels[Math.min(score, labels.length - 1)];
+    return { score, label };
+  }, [password]);
 
   const getAuthErrorMessage = (err: unknown) => {
     if (typeof err === 'object' && err && 'code' in err) {
@@ -243,6 +263,9 @@ export function AuthPanel({
       <div className="absolute -left-32 -bottom-40 w-[420px] h-[420px] rounded-full bg-sdf-violet/10 blur-3xl"></div>
 
       <div className="relative z-10 w-full max-w-md mx-6 bg-sdf-surface/80 border border-sdf-border rounded-2xl p-8 backdrop-blur">
+        <div className="flex items-center justify-center mb-6">
+          <img src={logoFooter} alt="SmartDataFusion" className="h-28 w-auto" />
+        </div>
         <div className="flex items-center justify-between mb-6">
           <div>
             <p className="text-xs font-mono text-sdf-muted uppercase tracking-widest">
@@ -328,16 +351,40 @@ export function AuthPanel({
               <label className="text-xs font-mono text-sdf-muted" htmlFor="auth-password">
                 Password
               </label>
-              <input
-                id="auth-password"
-                type="password"
-                autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
-                required
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                className="w-full bg-sdf-bg border border-sdf-border rounded-md px-3 py-2 text-sm font-ui text-sdf-text outline-none focus:border-sdf-cyan/60"
-                placeholder="Minimum 6 characters"
-              />
+              <div className="relative">
+                <input
+                  id="auth-password"
+                  type={showPassword ? 'text' : 'password'}
+                  autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
+                  required
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  className="w-full bg-sdf-bg border border-sdf-border rounded-md px-3 py-2 pr-10 text-sm font-ui text-sdf-text outline-none focus:border-sdf-cyan/60"
+                  placeholder="Minimum 6 characters"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-sdf-muted hover:text-sdf-text">
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+              {mode === 'signup' && (
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-[10px] font-mono text-sdf-muted">
+                    <span>Password strength</span>
+                    <span className="text-sdf-text">{passwordStrength.label}</span>
+                  </div>
+                  <div className="grid grid-cols-4 gap-2">
+                    {[0, 1, 2, 3].map((index) => (
+                      <span
+                        key={index}
+                        className={`h-1.5 rounded-full ${passwordStrength.score > index ? 'bg-sdf-cyan' : 'bg-sdf-border'}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             {mode === 'signup' && (
@@ -347,16 +394,24 @@ export function AuthPanel({
                   htmlFor="auth-confirm-password">
                   Confirm Password
                 </label>
-                <input
-                  id="auth-confirm-password"
-                  type="password"
-                  autoComplete="new-password"
-                  required
-                  value={confirmPassword}
-                  onChange={(event) => setConfirmPassword(event.target.value)}
-                  className="w-full bg-sdf-bg border border-sdf-border rounded-md px-3 py-2 text-sm font-ui text-sdf-text outline-none focus:border-sdf-cyan/60"
-                  placeholder="Repeat your password"
-                />
+                <div className="relative">
+                  <input
+                    id="auth-confirm-password"
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    autoComplete="new-password"
+                    required
+                    value={confirmPassword}
+                    onChange={(event) => setConfirmPassword(event.target.value)}
+                    className="w-full bg-sdf-bg border border-sdf-border rounded-md px-3 py-2 pr-10 text-sm font-ui text-sdf-text outline-none focus:border-sdf-cyan/60"
+                    placeholder="Repeat your password"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword((prev) => !prev)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-sdf-muted hover:text-sdf-text">
+                    {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
               </div>
             )}
 

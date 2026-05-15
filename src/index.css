@@ -24,6 +24,10 @@
     @apply bg-[#050A14] text-[#E8F4FF] antialiased overflow-x-hidden;
     font-family: 'JetBrains Mono', monospace;
   }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+  }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Chakra Petch', sans-serif;
   }

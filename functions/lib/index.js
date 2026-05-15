@@ -1,17 +1,24 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyRecaptcha = void 0;
+const firebase_functions_1 = require("firebase-functions");
 const https_1 = require("firebase-functions/v2/https");
-const setCorsHeaders = (res, origin) => {
-    const allowedOrigins = (process.env.RECAPTCHA_ALLOWED_ORIGINS ?? '')
-        .split(',')
-        .map((entry) => entry.trim())
-        .filter(Boolean);
+const parseAllowedOrigins = (value) => (value ?? '')
+    .split(',')
+    .map((entry) => entry.trim())
+    .filter(Boolean);
+const isLocalhostOrigin = (origin) => Boolean(origin &&
+    (origin.startsWith('http://localhost:') ||
+        origin.startsWith('http://127.0.0.1:')));
+const setCorsHeaders = (res, origin, allowedOrigins = parseAllowedOrigins(process.env.RECAPTCHA_ALLOWED_ORIGINS)) => {
     const allowAllOrigins = allowedOrigins.length === 0;
     if (allowAllOrigins) {
         res.set('Access-Control-Allow-Origin', origin ?? '*');
     }
-    else if (origin && allowedOrigins.includes(origin)) {
+    else if (origin && (allowedOrigins.includes(origin) || isLocalhostOrigin(origin))) {
         res.set('Access-Control-Allow-Origin', origin);
     }
     res.set('Vary', 'Origin');

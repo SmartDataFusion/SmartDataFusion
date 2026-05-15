@@ -34,6 +34,7 @@ export function PrivacyPolicy() {
               <li>Authentication events and account data created through Firebase Auth.</li>
               <li>Cookie and session data used for essential site functionality and security.
               </li>
+              <li>Device and browser metadata for security, fraud prevention, and diagnostics.</li>
             </ul>
           </div>
 
@@ -58,6 +59,10 @@ export function PrivacyPolicy() {
               Firebase, Tawk.to, reCAPTCHA, and Formspree may also set cookies or use
               local storage in line with their own policies.
             </p>
+            <p className="mt-3">
+              You can accept or decline optional analytics cookies using the banner
+              controls. Essential cookies are required for core functionality.
+            </p>
           </div>
 
           <div>
@@ -81,7 +86,31 @@ export function PrivacyPolicy() {
               <li>Improve site messaging, UX, analytics, and performance.</li>
               <li>Maintain security, prevent abuse, and ensure availability.</li>
               <li>Operate customer support and account access features.</li>
+              <li>Comply with legal obligations and enforce platform policies.</li>
             </ul>
+          </div>
+
+          <div>
+            <h3 className="font-heading text-lg font-semibold text-sdf-text mb-3">
+              Data Retention
+            </h3>
+            <p>
+              We retain contact and inquiry data only as long as necessary to respond
+              to requests, maintain business records, and meet legal requirements. You
+              can request deletion at any time.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-heading text-lg font-semibold text-sdf-text mb-3">
+              Security Measures
+            </h3>
+            <p>
+              We apply technical and organizational safeguards, including encrypted
+              transmission, access controls, and monitoring for abuse or suspicious
+              activity. No system is 100% secure, but we continuously improve our
+              defenses.
+            </p>
           </div>
 
           <div>
@@ -98,6 +127,16 @@ export function PrivacyPolicy() {
 
           <div>
             <h3 className="font-heading text-lg font-semibold text-sdf-text mb-3">
+              International Transfers
+            </h3>
+            <p>
+              If we transfer data across borders, we use appropriate safeguards such
+              as contractual protections and vendor compliance commitments.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-heading text-lg font-semibold text-sdf-text mb-3">
               Data Sharing
             </h3>
             <p>
@@ -105,6 +144,26 @@ export function PrivacyPolicy() {
               providers that help us operate the website, secure the platform, or manage
               communications. Those providers are expected to protect your data and use
               it only for the services they provide to us.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-heading text-lg font-semibold text-sdf-text mb-3">
+              Children's Privacy
+            </h3>
+            <p>
+              SmartDataFusion services are intended for business users. We do not
+              knowingly collect personal data from children.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-heading text-lg font-semibold text-sdf-text mb-3">
+              Policy Updates
+            </h3>
+            <p>
+              We may update this policy as our services evolve. We will update the
+              date above and, when required, provide additional notice.
             </p>
           </div>
 

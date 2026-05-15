@@ -95,7 +95,8 @@ export function ProductPage({ onLaunchDashboard }: ProductPageProps) {
       eyebrow="// NEXARA PRO"
       title="The Next-Generation AI-Powered Data Fusion Platform"
       description="Nexara Pro revolutionizes how enterprises harness their data, turning fragmented information into unified intelligence that drives real-time decisions and strategic insights."
-      onLaunchDashboard={onLaunchDashboard}>
+      onLaunchDashboard={onLaunchDashboard}
+      ctaLabel="Launch Dashboard">
 
       {/* Hero CTA */}
       <section className="py-12 border-b border-sdf-border bg-sdf-surface/10">
@@ -106,7 +107,7 @@ export function ProductPage({ onLaunchDashboard }: ProductPageProps) {
             transition={{ duration: 0.6 }}
           >
             <button
-              onClick={() => window.open('https://smartdatafusion.com/dashboard', '_blank')}
+              onClick={onLaunchDashboard}
               className="group inline-flex items-center gap-2 bg-sdf-cyan text-sdf-bg font-ui font-bold px-8 py-4 rounded-lg hover:bg-sdf-cyan/90 hover:shadow-[0_0_20px_rgba(0,200,255,0.4)] transition-all duration-300 text-lg">
               Try Nexara Pro Live
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -297,6 +298,46 @@ export function ProductPage({ onLaunchDashboard }: ProductPageProps) {
         </div>
       </section>
 
+      <section className="py-20 border-b border-sdf-border bg-sdf-surface/10">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="font-heading text-3xl font-bold text-sdf-text mb-4">
+              Deployment Options
+            </h2>
+            <p className="font-mono text-sdf-muted max-w-2xl mx-auto">
+              Choose the rollout model that fits your security, latency, and compliance requirements.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                title: 'Cloud managed',
+                text: 'Fully managed platform with regional redundancy and automated updates.'
+              },
+              {
+                title: 'Private cloud',
+                text: 'Dedicated tenancy with secure network controls and custom SLAs.'
+              },
+              {
+                title: 'On-premise',
+                text: 'Deploy behind your firewall with enterprise-grade governance.'
+              }
+            ].map((item) => (
+              <div key={item.title} className="p-6 border border-sdf-border rounded-lg bg-sdf-surface/20">
+                <h3 className="font-heading text-lg font-bold text-sdf-text mb-2">{item.title}</h3>
+                <p className="font-mono text-sm text-sdf-muted">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
@@ -312,7 +353,7 @@ export function ProductPage({ onLaunchDashboard }: ProductPageProps) {
               Join leading enterprises already using Nexara Pro to unlock the full potential of their data.
             </p>
             <button
-              onClick={() => window.open('https://smartdatafusion.com/dashboard', '_blank')}
+              onClick={onLaunchDashboard}
               className="group inline-flex items-center gap-2 bg-sdf-cyan text-sdf-bg font-ui font-bold px-8 py-4 rounded-lg hover:bg-sdf-cyan/90 hover:shadow-[0_0_20px_rgba(0,200,255,0.4)] transition-all duration-300 text-lg">
               Start Your Free Trial
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

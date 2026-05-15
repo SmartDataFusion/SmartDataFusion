@@ -17,37 +17,37 @@ import platform6 from '../../assets/mainPage/PLATFORM CAPABILITIES (6).svg';
 export function Features() {
   const features = [
   {
-    icon: <img src={platform1} alt="Multi-Source Data Ingestion" className="w-8 h-8" aria-hidden="true" />,
+    icon: <img src={platform1} alt="Multi-Source Data Ingestion" className="w-10 h-10" aria-hidden="true" />,
     title: 'Multi-Source Data Ingestion with PLATFORM CAPABILITIES',
     desc: 'Connects enterprise systems, APIs, and IoT devices. Aggregates structured and unstructured data from heterogeneous environments.',
     tag: 'INTEGRATION'
   },
   {
-    icon: <img src={platform2} alt="Real-Time Intelligence Processing" className="w-8 h-8" aria-hidden="true" />,
+    icon: <img src={platform2} alt="Real-Time Intelligence Processing" className="w-10 h-10" aria-hidden="true" />,
     title: 'Real-Time Intelligence Processing with PLATFORM CAPABILITIES',
     desc: 'Processes live data streams with sub-5ms latency. Generates actionable insights instantly as events occur across connected systems.',
     tag: 'REAL-TIME'
   },
   {
-    icon: <img src={platform3} alt="Unified Analytics Dashboard" className="w-8 h-8" aria-hidden="true" />,
+    icon: <img src={platform3} alt="Unified Analytics Dashboard" className="w-10 h-10" aria-hidden="true" />,
     title: 'Unified Analytics Dashboard with PLATFORM CAPABILITIES',
     desc: 'Visualizes unified data insights across all sources. Provides configurable reports, KPIs, and performance metrics in a single view.',
     tag: 'ANALYTICS'
   },
   {
-    icon: <img src={platform4} alt="AI Data Fusion Engine" className="w-8 h-8" aria-hidden="true" />,
+    icon: <img src={platform4} alt="AI Data Fusion Engine" className="w-10 h-10" aria-hidden="true" />,
     title: 'AI Data Fusion Engine with PLATFORM CAPABILITIES',
     desc: 'Combines and correlates data from multiple sources simultaneously. Identifies hidden relationships, cross-system patterns, and signal dependencies.',
     tag: 'FUSION'
   },
   {
-    icon: <img src={platform5} alt="Predictive Analytics" className="w-8 h-8" aria-hidden="true" />,
+    icon: <img src={platform5} alt="Predictive Analytics" className="w-10 h-10" aria-hidden="true" />,
     title: 'Predictive Analytics with PLATFORM CAPABILITIES',
     desc: 'Forecasts trends and system behavior using AI models. Proactively detects anomalies and inefficiencies before they impact operations.',
     tag: 'PREDICTIVE'
   },
   {
-    icon: <img src={platform6} alt="Scalable Enterprise Architecture" className="w-8 h-8" aria-hidden="true" />,
+    icon: <img src={platform6} alt="Scalable Enterprise Architecture" className="w-10 h-10" aria-hidden="true" />,
     title: 'Scalable Enterprise Architecture with PLATFORM CAPABILITIES',
     desc: 'Designed for enterprise and IoT deployments at scale. Supports high-volume data ingestion, GPU-accelerated processing, and multi-region distribution.',
     tag: 'SCALE'
@@ -92,7 +92,7 @@ export function Features() {
                 </span>
               </div>
 
-              <div className="w-12 h-12 rounded-lg bg-sdf-surface border border-sdf-border flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-14 h-14 rounded-lg bg-sdf-surface border border-sdf-border flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 {feat.icon}
               </div>
 

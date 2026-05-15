@@ -1,5 +1,6 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useLayoutEffect, useState } from 'react';
 import { LandingPage } from './components/LandingPage';
+import { CookieBanner } from './components/CookieBanner';
 import { AuthPanel } from './components/auth/AuthPanel';
 import { useAuth } from './auth/AuthProvider';
 import { signOut } from 'firebase/auth';
@@ -24,13 +25,37 @@ const PrivacyPolicyPage = lazy(() =>
     default: module.PrivacyPolicyPage
   }))
 );
+const TermsPage = lazy(() =>
+  import('./components/pages/TermsPage').then((module) => ({
+    default: module.TermsPage
+  }))
+);
 const ProductPage = lazy(() =>
   import('./components/pages/ProductPage').then((module) => ({
     default: module.ProductPage
   }))
 );
+const PricingPage = lazy(() =>
+  import('./components/pages/Pricing').then((module) => ({
+    default: module.PricingPage
+  }))
+);
+const SandboxPaymentPage = lazy(() =>
+  import('./components/pages/SandboxPayment').then((module) => ({
+    default: module.SandboxPaymentPage
+  }))
+);
 
-type AppRoute = '/' | '/about' | '/contact' | '/privacy-policy' | '/dashboard' | '/product';
+type AppRoute =
+  | '/'
+  | '/about'
+  | '/contact'
+  | '/privacy-policy'
+  | '/terms'
+  | '/dashboard'
+  | '/product'
+  | '/pricing'
+  | '/sandbox-payment';
 
 function getRouteFromPathname(pathname: string): AppRoute {
   if (pathname === '/about') {
@@ -45,8 +70,20 @@ function getRouteFromPathname(pathname: string): AppRoute {
     return '/privacy-policy';
   }
 
+  if (pathname === '/terms') {
+    return '/terms';
+  }
+
   if (pathname === '/product') {
     return '/product';
+  }
+
+  if (pathname === '/pricing') {
+    return '/pricing';
+  }
+
+  if (pathname === '/sandbox-payment') {
+    return '/sandbox-payment';
   }
 
   if (pathname === '/dashboard') {
@@ -62,6 +99,12 @@ export function App() {
   const [currentView, setCurrentView] = useState<
     'landing' | 'auth' | 'dashboard'
   >(window.location.pathname === '/dashboard' ? 'dashboard' : 'landing');
+
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
 
   const navigateTo = (nextPath: AppRoute) => {
     if (window.location.pathname !== nextPath) {
@@ -92,6 +135,16 @@ export function App() {
     setCurrentView('dashboard');
   }, [user, pathname]);
 
+  useLayoutEffect(() => {
+    if (currentView === 'dashboard') {
+      return;
+    }
+
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    });
+  }, [pathname, currentView]);
+
   const handleLaunchDashboard = () => {
     navigateTo('/dashboard');
     if (!user) {
@@ -107,8 +160,8 @@ export function App() {
 
   const handleSignOut = async () => {
     await signOut(auth);
-    navigateTo('/');
-    setCurrentView('landing');
+    navigateTo('/dashboard');
+    setCurrentView('auth');
   };
 
   const handleGoToProduct = () => {
@@ -137,25 +190,43 @@ export function App() {
 
       {pathname === '/about' && currentView === 'landing' && (
         <Suspense fallback={routeFallback}>
-          <AboutPage onLaunchDashboard={handleLaunchDashboard} />
+          <AboutPage onLaunchDashboard={handleGoToProduct} />
         </Suspense>
       )}
 
       {pathname === '/contact' && currentView === 'landing' && (
         <Suspense fallback={routeFallback}>
-          <ContactPage onLaunchDashboard={handleLaunchDashboard} />
+          <ContactPage onLaunchDashboard={handleGoToProduct} />
         </Suspense>
       )}
 
       {pathname === '/privacy-policy' && currentView === 'landing' && (
         <Suspense fallback={routeFallback}>
-          <PrivacyPolicyPage onLaunchDashboard={handleLaunchDashboard} />
+          <PrivacyPolicyPage onLaunchDashboard={handleGoToProduct} />
+        </Suspense>
+      )}
+
+      {pathname === '/terms' && currentView === 'landing' && (
+        <Suspense fallback={routeFallback}>
+          <TermsPage onLaunchDashboard={handleGoToProduct} />
         </Suspense>
       )}
 
       {pathname === '/product' && currentView === 'landing' && (
         <Suspense fallback={routeFallback}>
           <ProductPage onLaunchDashboard={handleLaunchDashboard} />
+        </Suspense>
+      )}
+
+      {pathname === '/pricing' && currentView === 'landing' && (
+        <Suspense fallback={routeFallback}>
+          <PricingPage onLaunchDashboard={handleLaunchDashboard} />
+        </Suspense>
+      )}
+
+      {pathname === '/sandbox-payment' && currentView === 'landing' && (
+        <Suspense fallback={routeFallback}>
+          <SandboxPaymentPage />
         </Suspense>
       )}
 
@@ -185,6 +256,7 @@ export function App() {
           />
         </Suspense>
       )}
+      <CookieBanner />
     </div>);
 
 }

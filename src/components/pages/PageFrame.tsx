@@ -7,6 +7,7 @@ interface PageFrameProps {
   title: string;
   description: string;
   onLaunchDashboard: () => void;
+  ctaLabel?: string;
   children: React.ReactNode;
 }
 
@@ -15,31 +16,29 @@ export function PageFrame({
   title,
   description,
   onLaunchDashboard,
+  ctaLabel = 'SmartDataFusion',
   children
 }: PageFrameProps) {
   return (
     <div className="min-h-screen bg-sdf-bg text-sdf-text">
       <header className="sticky top-0 z-30 border-b border-sdf-border bg-sdf-surface/95 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between gap-6">
-          <a href="/" className="flex items-center gap-3 group">
-            <img src={logoFooter} alt="SmartDataFusion" className="h-10 w-auto" />
-            <span className="font-heading font-bold text-lg tracking-wide hidden sm:block group-hover:text-sdf-cyan transition-colors">
-              SmartData<span className="text-sdf-cyan">Fusion</span>
-            </span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-4 sm:gap-6">
+          <a href="/" className="flex items-center gap-2 sm:gap-3 group flex-shrink-0">
+            <img src={logoFooter} alt="SmartDataFusion" className="h-16 sm:h-24 w-auto" />
           </a>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 flex-wrap sm:flex-nowrap justify-end">
             <a
               href="/"
-              className="inline-flex items-center gap-2 text-sm font-ui text-sdf-muted hover:text-sdf-text transition-colors">
-              <ArrowLeft className="w-4 h-4" />
+              className="inline-flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-ui text-sdf-muted hover:text-sdf-text transition-colors">
+              <ArrowLeft className="w-3 sm:w-4 h-3 sm:h-4" />
               <span className="hidden sm:inline">Home</span>
             </a>
 
             <button
               onClick={onLaunchDashboard}
-              className="font-ui text-sm font-semibold px-4 py-2 border border-sdf-cyan text-sdf-cyan rounded hover:bg-sdf-cyan/10 hover:shadow-[0_0_15px_rgba(0,200,255,0.3)] transition-all duration-300">
-              Launch Dashboard
+              className="font-ui text-xs sm:text-sm font-semibold px-2 sm:px-4 py-1.5 sm:py-2 border border-sdf-cyan text-sdf-cyan rounded hover:bg-sdf-cyan/10 hover:shadow-[0_0_15px_rgba(0,200,255,0.3)] transition-all duration-300 whitespace-nowrap">
+              {ctaLabel}
             </button>
           </div>
         </div>

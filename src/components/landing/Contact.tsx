@@ -24,7 +24,9 @@ export function Contact() {
     if (recaptchaSiteKey) {
       import('react-google-recaptcha').then((mod) => {
         if (mounted) setReCAPTCHAComponent(() => mod.default);
-      }).catch(() => {});
+      }).catch((error) => {
+        console.error('Failed to load reCAPTCHA component', error);
+      });
     }
     return () => { mounted = false; };
   }, [recaptchaSiteKey]);
@@ -119,7 +121,7 @@ export function Contact() {
                       }))
                     }
                     className="w-full rounded-md bg-sdf-surface border border-sdf-border px-4 py-3 text-sm text-sdf-text placeholder:text-sdf-muted/60 focus:outline-none focus:border-sdf-cyan/50"
-                    placeholder="Jane Perera"
+                    placeholder="Enter your name"
                   />
                 </div>
                 <div>

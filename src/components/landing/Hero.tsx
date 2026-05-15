@@ -10,7 +10,9 @@ interface HeroProps {
 }
 export function Hero({ onPrimaryAction }: HeroProps) {
   return (
-    <section className="relative pt-20 pb-20 lg:pt-32 lg:pb-32 overflow-hidden min-h-screen flex flex-col justify-center">
+    <section
+      className="relative pt-20 pb-20 lg:pt-32 lg:pb-32 overflow-hidden min-h-screen flex flex-col justify-center"
+      id="home">
       {/* Background Particles */}
       <div className="absolute inset-0 z-0 bg-dot-pattern opacity-30"></div>
 
@@ -55,13 +57,15 @@ export function Hero({ onPrimaryAction }: HeroProps) {
                 onClick={onPrimaryAction}
                 className="group flex items-center gap-2 bg-sdf-cyan text-sdf-bg font-ui font-bold px-6 py-3 rounded hover:bg-sdf-cyan/90 hover:shadow-[0_0_20px_rgba(0,200,255,0.4)] transition-all duration-300">
                 
-                Get Started
+                SmartDataFusion
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="flex items-center gap-2 border border-sdf-border bg-sdf-surface/50 hover:bg-sdf-surface text-sdf-text font-mono text-sm px-6 py-3 rounded transition-all duration-300">
+              <a
+                href="#contact"
+                className="flex items-center gap-2 border border-sdf-border bg-sdf-surface/50 hover:bg-sdf-surface text-sdf-text font-mono text-sm px-6 py-3 rounded transition-all duration-300">
                 <Terminal className="w-4 h-4 text-sdf-muted" />
                 Request a Demo
-              </button>
+              </a>
             </div>
           </motion.div>
 
